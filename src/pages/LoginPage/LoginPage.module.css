@@ -1,0 +1,16 @@
+.sectionForm {
+    border-radius: 30px;
+    width: 100%;
+    background: var(--secondary-color);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

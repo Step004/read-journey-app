@@ -1,0 +1,8 @@
+.sectionPhoto {
+    border-radius: 30px;
+    width: 100%;
+    background: var(--secondary-color);
+    padding-top: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}

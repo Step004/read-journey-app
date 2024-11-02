@@ -1,0 +1,15 @@
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.logoText {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--main-color);
+}

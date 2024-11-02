@@ -1,0 +1,85 @@
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../src/fonts/Gilroy-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../src/fonts/Gilroy-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  src: url('../src/fonts/SFProText-Semibold.ttf') format('ttf');
+  font-weight: 600;
+  font-style: normal;
+}
+
+:root {
+  --font-family: "Gilroy", sans-serif;
+  --second-family: "SF Pro Text", sans-serif;
+  --container-bcg: #1f1f1f;
+  --main-color: #f9f9f9;
+  --secondary-color: #1f1f1f;
+}
+
+body {
+  font-family: "Gilroy", sans-serif;
+  font-weight: 500;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #141414;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+li,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: 375px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  /* min-height: 100vh; */
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: none;
+    width: 768px;
+    padding: 32px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 1280px;
+  }
+}
