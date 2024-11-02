@@ -3,6 +3,21 @@
     width: 100%;
     background: var(--secondary-color);
     padding-top: 20px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: end;
     box-sizing: border-box;
+}
+
+@media screen and (min-width: 768px) {
+    .sectionPhoto {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .sectionPhoto {
+        display: flex;
+        padding-top: 80px;
+    }
 }

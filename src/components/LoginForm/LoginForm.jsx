@@ -80,7 +80,7 @@ export default function LoginForm() {
           />
         </div>
         <button type="button" className={css.submitButton}>
-          Registration
+          Log In
         </button>
         <NavLink to="/register" className={css.linkToLoginPage}>
           Don’t have an account?
