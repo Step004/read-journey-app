@@ -1,7 +1,10 @@
 import Layout from "../Layout/Layout.jsx";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
+import { selectIsLoading, selectIsRefreshing } from "../../redux/auth/selectors.js";
+import { refreshUser } from "../../redux/auth/operations.js";
 
 // const WelcomePage = lazy(() =>
 //   import("../../pages/WelcomePage/WelcomePage.jsx")
@@ -21,6 +24,18 @@ const NotFoundPage = lazy(() =>
 );
 
 function App() {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+  const isLoading = useSelector(selectIsLoading);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  if (isRefreshing && isLoading) {
+    return <b>Loading. Please wait...</b>;
+  }
+
   return (
     <Layout>
       <Suspense fallback={<div>Please wait loading page...</div>}>

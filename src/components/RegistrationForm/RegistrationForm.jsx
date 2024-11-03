@@ -2,13 +2,18 @@ import { Field, Formik, Form, ErrorMessage } from "formik";
 import css from "./RegistrationForm.module.css";
 import * as Yup from "yup";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import EyeIcon from "../Icons/EyeIcon.jsx";
 import EueOffIcon from "../Icons/EueOffIcon.jsx";
 import clsx from "clsx";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/operations.js";
+import toast from "react-hot-toast";
 
 export default function RegistrationForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -22,8 +27,17 @@ export default function RegistrationForm() {
       .required("Password is required"),
   });
   const handleSubmit = async (values, actions) => {
-    console.log(values);
-
+    dispatch(register(values))
+      .unwrap()
+      .then((response) => {
+        console.log(response);
+        toast.success("Successfully registered!");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error);
+      });
     actions.resetForm();
   };
   return (
@@ -96,11 +110,7 @@ export default function RegistrationForm() {
             className={css.errorMsg}
           />
         </div>
-        <button
-          // type="button"
-          className={css.submitButton}
-          onClick={handleSubmit}
-        >
+        <button className={css.submitButton} type="submit">
           Registration
         </button>
         <NavLink to="/login" className={css.linkToLoginPage}>
