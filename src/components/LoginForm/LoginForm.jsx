@@ -79,7 +79,7 @@ export default function LoginForm() {
             className={css.errorMsg}
           />
         </div>
-        <button type="button" className={css.submitButton}>
+        <button  className={css.submitButton}>
           Log In
         </button>
         <NavLink to="/register" className={css.linkToLoginPage}>

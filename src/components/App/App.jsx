@@ -3,9 +3,9 @@ import { lazy, Suspense } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { Route, Routes } from "react-router-dom";
 
-const WelcomePage = lazy(() =>
-  import("../../pages/WelcomePage/WelcomePage.jsx")
-);
+// const WelcomePage = lazy(() =>
+//   import("../../pages/WelcomePage/WelcomePage.jsx")
+// );
 const RegisterPage = lazy(() =>
   import("../../pages/RegisterPage/RegisterPage.jsx")
 );
@@ -26,9 +26,9 @@ function App() {
       <Suspense fallback={<div>Please wait loading page...</div>}>
         <HelmetProvider>
           <Routes>
-            <Route path="/" element={<WelcomePage />} />
+            {/* <Route path="/" element={<WelcomePage />} /> */}
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/recommended" element={<RecommendedPage />} />
+            <Route path="/" element={<RecommendedPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/library" element={<MyLibraryPage />} />
             <Route path="*" element={<NotFoundPage />} />

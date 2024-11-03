@@ -96,7 +96,11 @@ export default function RegistrationForm() {
             className={css.errorMsg}
           />
         </div>
-        <button type="button" className={css.submitButton}>
+        <button
+          // type="button"
+          className={css.submitButton}
+          onClick={handleSubmit}
+        >
           Registration
         </button>
         <NavLink to="/login" className={css.linkToLoginPage}>
