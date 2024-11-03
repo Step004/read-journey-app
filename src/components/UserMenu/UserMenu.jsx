@@ -3,7 +3,7 @@ import css from "./UserMenu.module.css";
 import { useMediaQuery } from "react-responsive";
 import BurgerIcon from "../Icons/BurgerIcon.jsx";
 import MobileMenu from "../MobileMenu/MobileMenu.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function UserMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,9 +13,14 @@ export default function UserMenu() {
   const handleLogout = async () => {
     navigate("/");
   };
-  const handleIsOpenOrClose = async () => {
-    setIsOpen(!isOpen);
+  const handleIsOpenOrClose = () => {
+   setIsOpen((prevIsOpen) => (isSmallScreen ? !prevIsOpen : false));
   };
+    useEffect(() => {
+      if (!isSmallScreen && isOpen) {
+        setIsOpen(false);
+      }
+    }, [isSmallScreen, isOpen]);
 
   return (
     <div className={css.wrapper}>

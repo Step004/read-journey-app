@@ -1,0 +1,75 @@
+.filtersContainer{
+    max-width: 295px;
+    width: 100%;
+}
+.filterForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filterName {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: var(--main-color);
+}
+
+.field {
+    border-radius: 12px;
+    width: 100%;
+    height: 44px;
+    background: #262626;
+    border: none;
+    box-sizing: border-box;
+
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 133%;
+    letter-spacing: -0.02em;
+    color: var(--main-color);
+}
+
+.filterButton {
+    border: 1px solid rgba(249, 249, 249, 0.2);
+    border-radius: 30px;
+    width: 98px;
+    height: 38px;
+    background: none;
+    margin-top: 12px;
+
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: 0.02em;
+    color: var(--main-color);
+}
+
+.filterField {
+    position: relative;
+}
+
+.placeholder {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 133%;
+    letter-spacing: -0.02em;
+    color: #686868;
+}
+.bookTitle{
+    padding-left: 77px;
+}
+.author{
+    padding-left: 85px;
+}

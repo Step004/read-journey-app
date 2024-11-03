@@ -1,0 +1,25 @@
+.quoteContainer {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #262626;
+    padding: 15px 20px;
+    border-radius: 12px;
+}
+
+.quote {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.02em;
+    color: #686868;
+}
+
+.windowsSpan {
+    color: #f9f9f9;
+}
+.booksImg{
+    width: 40px;
+    height: 40px;
+}
