@@ -6,9 +6,9 @@ import { Route, Routes } from "react-router-dom";
 import { selectIsLoading, selectIsRefreshing } from "../../redux/auth/selectors.js";
 import { refreshUser } from "../../redux/auth/operations.js";
 
-// const WelcomePage = lazy(() =>
-//   import("../../pages/WelcomePage/WelcomePage.jsx")
-// );
+const WelcomePage = lazy(() =>
+  import("../../pages/WelcomePage/WelcomePage.jsx")
+);
 const RegisterPage = lazy(() =>
   import("../../pages/RegisterPage/RegisterPage.jsx")
 );
@@ -41,9 +41,9 @@ function App() {
       <Suspense fallback={<div>Please wait loading page...</div>}>
         <HelmetProvider>
           <Routes>
-            {/* <Route path="/" element={<WelcomePage />} /> */}
+            <Route path="/" element={<WelcomePage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/" element={<RecommendedPage />} />
+            <Route path="/recommended" element={<RecommendedPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/library" element={<MyLibraryPage />} />
             <Route path="*" element={<NotFoundPage />} />

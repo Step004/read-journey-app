@@ -1,19 +1,26 @@
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import css from "./LoginForm.module.css";
 import * as Yup from "yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import EyeIcon from "../Icons/EyeIcon.jsx";
 import EueOffIcon from "../Icons/EueOffIcon.jsx";
 import clsx from "clsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../redux/auth/operations.js";
 import toast from "react-hot-toast";
+import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/recommended");
+    }
+  }, []);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -31,7 +38,7 @@ export default function LoginForm() {
       .then((response) => {
         console.log(response);
         toast.success("Success login");
-        navigate("/");
+        navigate("/recommended");
       })
       .catch((error) => {
         console.log(error);

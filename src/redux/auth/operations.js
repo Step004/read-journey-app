@@ -61,8 +61,8 @@ export const refreshUser = createAsyncThunk(
   {
     condition(_, thunkAPI) {
       const reduxState = thunkAPI.getState();
-          const savedToken = reduxState.auth.token;
-          return savedToken !== null;
+      const savedToken = reduxState.auth.token;
+      return savedToken !== null;
     },
   }
 );

@@ -1,19 +1,26 @@
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import css from "./RegistrationForm.module.css";
 import * as Yup from "yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import EyeIcon from "../Icons/EyeIcon.jsx";
 import EueOffIcon from "../Icons/EueOffIcon.jsx";
 import clsx from "clsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/auth/operations.js";
 import toast from "react-hot-toast";
+import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
 
 export default function RegistrationForm() {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/recommended");
+    }
+  }, []);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -32,7 +39,7 @@ export default function RegistrationForm() {
       .then((response) => {
         console.log(response);
         toast.success("Successfully registered!");
-        navigate("/");
+        navigate("/recommended");
       })
       .catch((error) => {
         console.log(error);
