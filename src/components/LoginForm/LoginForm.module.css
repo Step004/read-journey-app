@@ -69,6 +69,7 @@
     line-height: 129%;
     letter-spacing: 0.02em;
     color: var(--secondary-color);
+    cursor: pointer;
 }
 
 .linkToLoginPage {

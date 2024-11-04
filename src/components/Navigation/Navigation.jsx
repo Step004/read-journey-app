@@ -10,20 +10,20 @@ export default function Navigation() {
   const location = useLocation();
 
   return (
-      <nav className={css.navigation}>
-        <NavLink
-          to="/"
-          className={() => buildLinkClass(location.pathname === "/")}
-        >
-          Home
-        </NavLink>
+    <nav className={css.navigation}>
+      <NavLink
+        to="/recommended"
+        className={() => buildLinkClass(location.pathname === "/recommended")}
+      >
+        Home
+      </NavLink>
 
-        <NavLink
-          to="/library"
-          className={() => buildLinkClass(location.pathname === "/library")}
-        >
-          My library
-        </NavLink>
-      </nav>
+      <NavLink
+        to="/library"
+        className={() => buildLinkClass(location.pathname === "/library")}
+      >
+        My library
+      </NavLink>
+    </nav>
   );
 }

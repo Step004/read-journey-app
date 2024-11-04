@@ -9,11 +9,15 @@ export default function Filters() {
         <Form className={css.filterForm} autoComplete="off">
           <p className={css.filterName}>Filters:</p>
           <div className={css.filterField}>
-            <Field className={clsx(css.field, css.bookTitle)}></Field>
+            <Field
+              className={clsx(css.field, css.bookTitle)}
+            ></Field>
             <span className={css.placeholder}>Book title:</span>
           </div>
           <div className={css.filterField}>
-            <Field className={clsx(css.field, css.author)}></Field>
+            <Field
+              className={clsx(css.field, css.author)}
+            ></Field>
             <span className={css.placeholder}>The author:</span>
           </div>
           <button className={css.filterButton}>To apply</button>

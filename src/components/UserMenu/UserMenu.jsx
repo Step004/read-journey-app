@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../redux/auth/operations.js";
 import toast from "react-hot-toast";
-import { selectError, selectIsLoading, selectUser } from "../../redux/auth/selectors.js";
+import { selectIsLoading, selectUser } from "../../redux/auth/selectors.js";
 
 export default function UserMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +18,6 @@ export default function UserMenu() {
 
   const user = useSelector(selectUser);  
     const isLoading = useSelector(selectIsLoading);
-    const isError = useSelector(selectError);
 
   const isLargeScreen = useMediaQuery({ query: "(min-width: 1440px)" });
   const isSmallScreen = useMediaQuery({ query: "(max-width: 767px)" });
@@ -28,7 +27,7 @@ export default function UserMenu() {
       toast.error("Failed to log out. Please try again later.");
       return;
     });
-    navigate("/login");
+    navigate("/");
   };
   const handleIsOpenOrClose = () => {
     setIsOpen((prevIsOpen) => (isSmallScreen ? !prevIsOpen : false));

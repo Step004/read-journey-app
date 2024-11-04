@@ -1,20 +1,34 @@
 import { Helmet } from "react-helmet-async";
-import { NavLink } from "react-router-dom";
+import AppBar from "../../components/AppBar/AppBar.jsx";
+import ImageWrapper from "../../components/ImageWrapper/ImageWrapper.jsx";
+import { NavLink, useNavigate } from "react-router-dom";
+import css from "./WelcomePage.module.css";
 
 export default function WelcomePage() {
+  const navigate = useNavigate();
   return (
-    <main>
+    <main className={css.container}>
       <Helmet>
         <title>Welcome Page</title>
       </Helmet>
 
-      <nav>
-        <NavLink to="/register">
-          <p>Registration</p>
-        </NavLink>
-
-        <NavLink to="/login">Login</NavLink>
-      </nav>
+      <AppBar />
+      <div className={css.leftPart}>
+        <div className={css.navigate}>
+          <div className={css.buttons}>
+            <button className={css.button} onClick={() => navigate("/login")}>
+              Login
+            </button>
+            <button
+              className={css.button}
+              onClick={() => navigate("/register")}
+            >
+              Registration
+            </button>
+          </div>
+        </div>
+        <ImageWrapper />
+      </div>
     </main>
   );
 }

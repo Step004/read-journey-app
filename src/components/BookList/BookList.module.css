@@ -1,0 +1,20 @@
+.bookList {
+    display: flex;
+    row-gap: 27px;
+    column-gap: 21px;
+    flex-wrap: wrap;
+}
+
+@media screen and (min-width: 768px) {
+    .bookList {
+        row-gap: 27px;
+        column-gap: 25px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .bookList {
+        row-gap: 27px;
+        column-gap: 20px;
+    }
+}
