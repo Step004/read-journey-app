@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+// import { useMediaQuery } from "react-responsive";
 import css from "./RecommendedBooks.module.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import {
@@ -14,16 +15,22 @@ import { useEffect, useState } from "react";
 export default function RecommendedBooks() {
   const dispatch = useDispatch();
   const books = useSelector(selectRecommendedBooks);
+  const allBooks = useSelector(selectRecommendedBooks);
+  console.log(allBooks);
+  
+  // const isLargeScreen = useMediaQuery({ query: "(min-width: 1440px)" });
+  // const isTabletScreen = useMediaQuery({ query: "(min-width: 768px)" });
 
   const isLoading = useSelector(selectIsLoadingBooks);
   const isError = useSelector(selectIsErrorBooks);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
+
   useEffect(() => {
     dispatch(fetchRecommendedBooks(currentPage))
       .unwrap()
-      .then((data) => setTotalPages(data.totalPages)); // Зберігаємо кількість сторінок
+      .then((data) => setTotalPages(data.totalPages));
   }, [currentPage, dispatch]);
 
   const handleNextPage = () => {

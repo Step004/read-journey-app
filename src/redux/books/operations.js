@@ -5,7 +5,9 @@ export const fetchRecommendedBooks = createAsyncThunk(
   "fetchRecommendedBooks",
   async (page = 1, thunkApi) => {
     try {
-      const response = await axios.get(`/books/recommend?page=${page}`);
+      const response = await axios.get(
+        `/books/recommend?page=${page}`
+      );
       return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
