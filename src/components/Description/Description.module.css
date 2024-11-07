@@ -84,3 +84,20 @@
     font-size: 18px;
     color: #1f1f1f;
 }
+
+@media screen and (min-width: 768px) {
+    .title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .circle {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+
+    .link {
+        margin-top: 6px;
+    }
+}

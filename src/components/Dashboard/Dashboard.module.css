@@ -14,6 +14,7 @@
         display: flex;
         flex-direction: row;
         gap: 32px;
+        padding: 32px;
     }
 }
 @media screen and (min-width: 1440px) {
@@ -22,5 +23,6 @@
         flex-direction: column;
         gap: 20px;
         max-width: 353px;
+        padding: 40px 20px 20px 20px;
     }
 }
