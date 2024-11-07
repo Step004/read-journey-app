@@ -1,6 +1,7 @@
 import css from './BookItem.module.css'
 export default function BookItem({ book }) {
   
+  
     return (
       <div className={css.card}>
         <img src={book.imageUrl} alt={book.title} className={css.imgBook} />

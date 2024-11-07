@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-// import { useMediaQuery } from "react-responsive";
 import css from "./RecommendedBooks.module.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import {
@@ -11,6 +10,7 @@ import BookList from "../BookList/BookList.jsx";
 import { useDispatch } from "react-redux";
 import { fetchRecommendedBooks } from "../../redux/books/operations.js";
 import { useEffect, useState } from "react";
+import { useWindowSize } from "../../hooks/useWindowSize.js";
 
 export default function RecommendedBooks() {
   const dispatch = useDispatch();
@@ -20,17 +20,25 @@ export default function RecommendedBooks() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [currentLimit, setCurrentLimit] = useState(10);
 
-  // const isLargeScreen = useMediaQuery({ query: "(min-width: 1440px)" });
-  // const isTabletScreen = useMediaQuery({ query: "(min-width: 768px)" });
+  const { width } = useWindowSize();
 
   useEffect(() => {
-    dispatch(fetchRecommendedBooks(currentPage))
+    if (width <= 767) {
+      setCurrentLimit(2);
+    } else if (width <= 1439) {
+      setCurrentLimit(8);
+    } else {
+      setCurrentLimit(10);
+    }
+  }, [width]);
+
+  useEffect(() => {
+    dispatch(fetchRecommendedBooks({ page: currentPage, limit: currentLimit }))
       .unwrap()
       .then((data) => setTotalPages(data.totalPages));
-  }, [currentPage, dispatch]);
-
-  
+  }, [currentPage, currentLimit, dispatch]);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
@@ -39,7 +47,7 @@ export default function RecommendedBooks() {
   const handlePrevPage = () => {
     if (currentPage > 1) setCurrentPage((prev) => prev - 1);
   };
-  
+
   return (
     <section className={css.recommendedSection}>
       <div className={css.titleAndNav}>
@@ -61,13 +69,7 @@ export default function RecommendedBooks() {
           </button>
         </div>
       </div>
-      {isLoading ? (
-        <div> loading...</div>
-      ) : (
-        <BookList
-          books={books}
-        />
-      )}
+      {isLoading ? <div> loading...</div> : <BookList books={books} />}
       {isError && <div>Some error...</div>}
     </section>
   );
