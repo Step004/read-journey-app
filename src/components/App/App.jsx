@@ -3,7 +3,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { selectIsLoading, selectIsRefreshing } from "../../redux/auth/selectors.js";
+import { selectIsRefreshing, selectToken } from "../../redux/auth/selectors.js";
 import { refreshUser } from "../../redux/auth/operations.js";
 
 const WelcomePage = lazy(() =>
@@ -26,13 +26,15 @@ const NotFoundPage = lazy(() =>
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-  const isLoading = useSelector(selectIsLoading);
+  const token = useSelector(selectToken);
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (token) {
+      dispatch(refreshUser());
+    }
+  }, [dispatch, token]);
 
-  if (isRefreshing && isLoading) {
+  if (isRefreshing) {
     return <b>Loading. Please wait...</b>;
   }
 

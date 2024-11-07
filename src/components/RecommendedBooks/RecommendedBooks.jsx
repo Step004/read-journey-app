@@ -15,23 +15,22 @@ import { useEffect, useState } from "react";
 export default function RecommendedBooks() {
   const dispatch = useDispatch();
   const books = useSelector(selectRecommendedBooks);
-  const allBooks = useSelector(selectRecommendedBooks);
-  console.log(allBooks);
-  
-  // const isLargeScreen = useMediaQuery({ query: "(min-width: 1440px)" });
-  // const isTabletScreen = useMediaQuery({ query: "(min-width: 768px)" });
-
   const isLoading = useSelector(selectIsLoadingBooks);
   const isError = useSelector(selectIsErrorBooks);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
+  // const isLargeScreen = useMediaQuery({ query: "(min-width: 1440px)" });
+  // const isTabletScreen = useMediaQuery({ query: "(min-width: 768px)" });
 
   useEffect(() => {
     dispatch(fetchRecommendedBooks(currentPage))
       .unwrap()
       .then((data) => setTotalPages(data.totalPages));
   }, [currentPage, dispatch]);
+
+  
 
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
@@ -40,7 +39,7 @@ export default function RecommendedBooks() {
   const handlePrevPage = () => {
     if (currentPage > 1) setCurrentPage((prev) => prev - 1);
   };
-
+  
   return (
     <section className={css.recommendedSection}>
       <div className={css.titleAndNav}>
@@ -62,7 +61,13 @@ export default function RecommendedBooks() {
           </button>
         </div>
       </div>
-      {isLoading ? <div> loading...</div> : <BookList books={books} />}
+      {isLoading ? (
+        <div> loading...</div>
+      ) : (
+        <BookList
+          books={books}
+        />
+      )}
       {isError && <div>Some error...</div>}
     </section>
   );

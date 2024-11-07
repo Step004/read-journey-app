@@ -16,11 +16,12 @@ export default function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
   useEffect(() => {
     if (isLoggedIn) {
       navigate("/recommended");
     }
-  }, []);
+  }, [isLoggedIn, navigate]);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -32,21 +33,18 @@ export default function LoginForm() {
       .min(7, "Password must be at least 7 characters")
       .required("Password is required"),
   });
-  const handleSubmit = async (values, actions) => {
-    dispatch(logIn(values))
-      .unwrap()
-      .then((response) => {
-        console.log(response);
-        toast.success("Success login");
-        navigate("/recommended");
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error(error);
-      });
 
+  const handleSubmit = async (values, actions) => {
+    try {
+      await dispatch(logIn(values)).unwrap();
+      toast.success("Success login");
+    } catch (error) {
+      console.log(error);
+      toast.error("Login failed");
+    }
     actions.resetForm();
   };
+
   return (
     <Formik
       initialValues={{

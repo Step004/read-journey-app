@@ -49,7 +49,7 @@ export const logOut = createAsyncThunk("auth.logout", async (_, thunkAPI) => {
 });
 
 export const refreshUser = createAsyncThunk(
-  "auth.refresh",
+  "auth/refresh",
   async (_, thunkAPI) => {
     const reduxState = thunkAPI.getState();
     const savedToken = reduxState.auth.token;
