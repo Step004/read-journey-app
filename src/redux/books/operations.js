@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchRecommendedBooks = createAsyncThunk(
   "fetchRecommendedBooks",
-  async ({ page = 1, limit = 10 }, thunkApi) => {
+  async ({ page = 1, limit }, thunkApi) => {
     try {
       const response = await axios.get(`/books/recommend?page=${page}&limit=${limit}`);
       return response.data;

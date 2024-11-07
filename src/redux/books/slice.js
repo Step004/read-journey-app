@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchRecommendedBooks } from "./operations.js";
+import {
+  addBookFromRecommendedBooks,
+  fetchRecommendedBooks,
+} from "./operations.js";
 
 const bookInitialState = {
   items: [],
@@ -23,6 +26,16 @@ const slice = createSlice({
       .addCase(fetchRecommendedBooks.rejected, (state) => {
         state.error = true;
         state.loading = false;
-      }),
+      })
+      .addCase(addBookFromRecommendedBooks.pending, (state) => {
+        state.error = false;
+        state.loading = true;
+      })
+      .addCase(addBookFromRecommendedBooks.fulfilled, (state) => {
+        state.loading = false;
+      }).addCase(addBookFromRecommendedBooks.rejected, (state) => {
+        state.error = true;
+        state.loading = false;
+      })
 });
 export default slice.reducer;
